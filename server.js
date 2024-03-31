@@ -11,8 +11,6 @@ const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 
-passport.use(strategy);
-
 // JSON Web Token Setup
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
@@ -44,6 +42,8 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     next(null, false);
   }
 });
+
+passport.use(strategy);
 
 app.use(passport.initialize());
 
